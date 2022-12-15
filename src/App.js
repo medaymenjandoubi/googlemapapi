@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 function App() {
   return (
     <div className="App">
@@ -18,8 +18,18 @@ function App() {
           Learn React
         </a>
       </header>
+      <Map google={this.props.google} zoom={14}>
+ 
+        <Marker onClick={this.onMarkerClick}
+                name={'Current location'} />
+ 
+        <InfoWindow onClose={this.onInfoWindowClose}>
+
+        </InfoWindow>
+      </Map>
     </div>
   );
 }
-
-export default App;
+export default GoogleApiWrapper({
+  apiKey: ("YOUR_GOOGLE_API_KEY_GOES_HERE")
+})(App)
